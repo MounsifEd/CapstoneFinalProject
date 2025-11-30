@@ -1,22 +1,18 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import {
+  loadReviewsFromStorage,
+  saveReviewsToStorage,
+} from "../services/storage";
 
 const ReviewsContext = createContext();
 
-const REVIEWS_STORAGE_KEY = "reviews";
-
 export function ReviewsProvider({ children }) {
-  const [userReviews, setUserReviews] = useState(() => {
-    if (typeof window === "undefined") return {};
-    try {
-      const saved = localStorage.getItem(REVIEWS_STORAGE_KEY);
-      return saved ? JSON.parse(saved) : {};
-    } catch {
-      return {};
-    }
-  });
+  const [userReviews, setUserReviews] = useState(() =>
+    loadReviewsFromStorage()
+  );
 
   useEffect(() => {
-    localStorage.setItem(REVIEWS_STORAGE_KEY, JSON.stringify(userReviews));
+    saveReviewsToStorage(userReviews); // ✅ Persist user reviews in localStorage
   }, [userReviews]);
 
   const addReview = (productId, review) => {
@@ -35,8 +31,8 @@ export function ReviewsProvider({ children }) {
   };
 
   const value = {
-    addReview,
-    getAllReviewsForProduct,
+    addReview,               // ✅ "Submit a review"
+    getAllReviewsForProduct, // used to show both API + user reviews, and to compute avg rating
   };
 
   return (

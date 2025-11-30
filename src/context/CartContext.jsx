@@ -1,22 +1,13 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { loadCartFromStorage, saveCartToStorage } from "../services/storage";
 
 const CartContext = createContext();
 
-const CART_STORAGE_KEY = "cart";
-
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState(() => {
-    if (typeof window === "undefined") return [];
-    try {
-      const saved = localStorage.getItem(CART_STORAGE_KEY);
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
+  const [cartItems, setCartItems] = useState(() => loadCartFromStorage());
 
   useEffect(() => {
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+    saveCartToStorage(cartItems); // ✅ requirement: cart persistence using localStorage
   }, [cartItems]);
 
   const addToCart = (product) => {
@@ -63,8 +54,7 @@ export function CartProvider({ children }) {
 
   const getDiscountedPrice = (item) => {
     if (!item.discountPercentage) return item.price;
-    const price =
-      item.price * (1 - item.discountPercentage / 100);
+    const price = item.price * (1 - item.discountPercentage / 100);
     return Number(price.toFixed(2));
   };
 
@@ -89,8 +79,8 @@ export function CartProvider({ children }) {
     removeFromCart,
     updateQuantity,
     clearCart,
-    itemCount,
-    subtotal,
+    itemCount, // ✅ "Total item count"
+    subtotal,  // ✅ used for dynamic totals & checkout
     getDiscountedPrice,
   };
 

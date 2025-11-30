@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
+import HomePage from "./Pages/HomePage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from "./pages/CartPage";
-import CheckoutPage from "./pages/CheckoutPage";
-import OrderConfirmationPage from "./pages/OrderConfirmationPage";
+import CheckoutPage from "./Pages/CheckoutPage";
+import OrderConfirmationPage from "./Pages/OrderConfirmationPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
