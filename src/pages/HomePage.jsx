@@ -112,7 +112,6 @@ function HomePage() {
   return (
     <section className="page">
       <h1>Products</h1>
-
       <div className="filters">
         <input
           type="text"
@@ -158,7 +157,6 @@ function HomePage() {
           <option value="rating-desc">Rating: High → Low</option>
         </select>
       </div>
-
       <div className="product-grid">
         {filteredProducts.map((product) => {
           // For listing, you could recompute average dynamic rating if you want.

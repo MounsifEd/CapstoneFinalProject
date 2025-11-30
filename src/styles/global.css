@@ -34,7 +34,7 @@ a {
 /* Header */
 
 .header {
-  background-color: #111827;
+  background-color: #000000;
   color: white;
 }
 
@@ -125,8 +125,12 @@ a {
 }
 
 .btn.primary {
-  background-color: #2563eb;
+  background-color: #ad0d0d;
   color: white;
+}
+
+.btn.primary:hover {
+  background-color: #5a0707;
 }
 
 .btn.danger {
@@ -153,6 +157,7 @@ a {
 
 .product-card {
   background-color: white;
+  height: 350px;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
@@ -215,21 +220,110 @@ a {
   font-weight: 700;
 }
 
-/* Filters */
+/* ============================================================
+   NEW LAYOUT WITH SIDEBAR
+============================================================ */
+
+.product-page h1 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.product-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 1.5rem;
+}
+
+.sidebar {
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  height: fit-content;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.sidebar li {
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-size: 0.95rem;
+}
+
+.sidebar li:hover {
+  background: #f3f4f6;
+}
+
+.sidebar li.active {
+  background: #2563eb;
+  color: white;
+}
+
+.price-inputs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.price-inputs input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+/* ============================================================
+   BEAUTIFUL FILTER BAR (TOP)
+============================================================ */
 
 .filters {
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+
   display: flex;
+  gap: 1rem;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  justify-content: space-between;
 }
 
 .filters input,
 .filters select {
-  padding: 0.4rem 0.5rem;
-  border-radius: 4px;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
   border: 1px solid #d1d5db;
+  background: #f9fafb;
+  font-size: 0.95rem;
+  min-width: 180px;
+  transition: all 0.2s ease;
 }
+
+.filters input:focus,
+.filters select:focus {
+  border-color: #2563eb;
+  background: white;
+  outline: none;
+  box-shadow: 0px 0px 6px rgba(37, 99, 235, 0.25);
+}
+
+
 
 /* Rating */
 
